@@ -1,24 +1,23 @@
 "use client";
-import './globals.css';
+import "./globals.css";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { LuLayoutDashboard } from "react-icons/lu";
+import { LuLayoutDashboard, LuSettings } from "react-icons/lu";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import { ImUserTie } from "react-icons/im";
 import { MdPayment } from "react-icons/md";
-import { LuSettings } from "react-icons/lu";
-import { IoMdNotificationsOutline } from "react-icons/io";
-
+import { IoIosArrowDown, IoIosArrowForward, IoMdNotificationsOutline } from "react-icons/io";
+import { BiCategoryAlt } from "react-icons/bi";
 
 const menuItems = [
-  { label: "Dashboard", href: "/", icon: <LuLayoutDashboard size={20}/> },
-  { label: "User Management", href: "/users", icon: <HiOutlineUserCircle  size={20}/>  },
-  { label: "Consult Management", href: "/consults", icon: <ImUserTie  size={20}/>  },
-  { label: "Payment", href: "/payments", icon: <MdPayment  size={20}/>  },
-  { label: "Category Management", href: "/categories", icon: <LuLayoutDashboard size={20}/>  },
+  { label: "Dashboard", href: "/", icon: <LuLayoutDashboard size={20} /> },
+  { label: "User Management", href: "/users", icon: <HiOutlineUserCircle size={20} /> },
+  { label: "Consult Management", href: "/consults", icon: <ImUserTie size={20} /> },
+  { label: "Payment", href: "/payments", icon: <MdPayment size={20} /> },
+  { label: "Category Management", href: "/categories", icon: <BiCategoryAlt size={20} /> },
 ];
 const settingMenu = [
   { label: "Profile", href: "/profile" },
@@ -30,12 +29,8 @@ export default function RootLayout({ children }) {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const pathname = usePathname();
 
-  useEffect(() => {
-    setSettingsOpen(false);
-  }, [pathname]);
 
-  // Check if current route is any of the settings route
-  const isSettingsRoute = settingMenu.some(item => item.href === pathname);
+  const isSettingsRoute = settingMenu.some((item) => item.href === pathname);
 
   return (
     <html lang="en">
@@ -51,20 +46,20 @@ export default function RootLayout({ children }) {
 
               {/* Navigation */}
               <nav className="flex flex-col gap-1 text-[15px] font-medium px-2">
-                {menuItems.map((item) => {
-                  const isActive = pathname === item.href;
+                {menuItems.map(({ label, href, icon }) => {
+                  const isActive = pathname === href;
                   return (
                     <Link
-                      key={item.label}
-                      href={item.href}
+                      key={label}
+                      href={href}
                       className={`px-4 py-3 rounded-sm transition-all duration-300 ${isActive
-                        ? "bg-[#00A89D] text-white"
-                        : "text-[#00A89D] hover:bg-[#00A89D] bg-[#FEFEFE] hover:text-white"
+                          ? "bg-[#00A89D] text-white"
+                          : "text-[#00A89D] hover:bg-[#00A89D] bg-[#FEFEFE] hover:text-white"
                         }`}
                     >
-                      <span className='flex items-center gap-2'>
-                        {item.icon}
-                        {item.label}
+                      <span className="flex items-center gap-2">
+                        {icon}
+                        {label}
                       </span>
                     </Link>
                   );
@@ -74,13 +69,20 @@ export default function RootLayout({ children }) {
                 <div>
                   <button
                     onClick={() => setSettingsOpen(!settingsOpen)}
-                    className={`w-full cursor-pointer text-left px-4 py-2 rounded-sm text-[#00A89D] flex justify-between items-center transition-all duration-300 ${settingsOpen || isSettingsRoute ? "bg-[#058279] text-white" : "bg-[#FEFEFE]"}`}
+                    className={`w-full cursor-pointer text-left px-4 py-3 rounded-sm flex justify-between items-center transition-all duration-300 ${settingsOpen || isSettingsRoute
+                        ? "bg-[#00A89D] text-white"
+                        : "bg-[#FEFEFE] text-[#00A89D]"
+                      }`}
                   >
-                    <p className='flex items-center gap-2'>
-                      <LuSettings size={20}/> 
-                      <span>Settings</span>
-                    </p>
-                    <span>{settingsOpen ? "▾" : "▸"}</span>
+                    <span className="flex items-center gap-2">
+                      <LuSettings size={20} />
+                      Settings
+                    </span>
+                    {settingsOpen ? (
+                      <IoIosArrowDown size={15} />
+                    ) : (
+                      <IoIosArrowForward size={15} />
+                    )}
                   </button>
 
                   <AnimatePresence initial={false}>
@@ -92,18 +94,18 @@ export default function RootLayout({ children }) {
                         exit={{ opacity: 0, y: -10 }}
                         transition={{ duration: 0.25 }}
                       >
-                        {settingMenu.map((item) => {
-                          const isActive = pathname === item.href;
+                        {settingMenu.map(({ label, href }) => {
+                          const active = pathname === href;
                           return (
                             <Link
-                              key={item.label}
-                              href={item.href}
-                              className={`px-4 py-2 rounded-sm transition-colors duration-200 ${isActive
-                                ? "bg-[#058279] text-white"
-                                : "text-[#00A89D] hover:bg-[#00A89D] bg-[#FEFEFE] hover:text-white"
+                              key={label}
+                              href={href}
+                              className={`px-4 py-2 rounded-sm transition-colors duration-200 ${active
+                                  ? "bg-[#058279] text-white"
+                                  : "text-[#00A89D] hover:bg-[#058279] bg-[#FEFEFE] hover:text-white"
                                 }`}
                             >
-                              {item.label}
+                              {label}
                             </Link>
                           );
                         })}
@@ -124,7 +126,7 @@ export default function RootLayout({ children }) {
             {/* Top bar */}
             <div className="flex justify-end items-center gap-4 bg-[#FDFDF5] h-24 pr-12">
               <button className="w-10 h-10 rounded-full bg-[#E6F8F7] flex items-center justify-center">
-              <IoMdNotificationsOutline color='#00A89D' size={20}/>
+                <IoMdNotificationsOutline color="#00A89D" size={20} />
               </button>
               <Image
                 src="/images/avatar.png"
@@ -137,7 +139,7 @@ export default function RootLayout({ children }) {
             </div>
 
             {/* Page content */}
-            <div className="p-4 h-[calc(100vh-96px)] rounded-t bg-[#F8F8F8]">
+            <div className="p-4 h-[calc(100vh-96px)] rounded-t bg-[#FDFDF5]">
               {children}
             </div>
           </main>
