@@ -59,7 +59,7 @@ export default function EarningGrowthChart2() {
             </div>
 
             <ResponsiveContainer width="100%" height={250}>
-                <AreaChart data={chartData[selectedYear]} className="text-[8px]">
+                <AreaChart className="text-[12px]" data={chartData[selectedYear]}>
                     {/* Gradient Fill */}
                     <defs>
                         <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
@@ -74,7 +74,7 @@ export default function EarningGrowthChart2() {
                         dataKey="name"
                         axisLine={false}
                         tickLine={false}
-                        tick={{ fontSize: 10 }}
+                        tick={{ fontSize: 12 }}
                     />
                     <YAxis
                         ticks={[0, 25, 50, 75, 100]}
@@ -82,7 +82,7 @@ export default function EarningGrowthChart2() {
                         tickFormatter={(value) => `${value}%`}
                         axisLine={false}
                         tickLine={false}
-                        tick={{ fontSize: 10 }}
+                        tick={{ fontSize: 12 }}
                     />
                     <Tooltip formatter={(value) => `${value}%`} />
                     <Area

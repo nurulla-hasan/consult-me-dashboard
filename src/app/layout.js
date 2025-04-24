@@ -122,7 +122,7 @@ export default function RootLayout({ children }) {
                 </nav>
               </div>
 
-              <button onClick={() => { (alert("logout")) }} className="text-[#00A89D] bg-[#FEFEFE] text-sm py-3 flex gap-2 pl-10 items-center cursor-pointer">
+              <button onClick={() => { (alert("logout")) }} className="text-[#00A89D] bg-[#FEFEFE] text-sm py-3 flex gap-2 pl-10 mx-2 items-center cursor-pointer">
                 <MdOutlineLogout size={20} />
                 <span className='text-md font-medium'>Log out</span>
               </button>
@@ -135,7 +135,7 @@ export default function RootLayout({ children }) {
 
               {/* Page content */}
               <PrivateRoute>
-                <div className="font-poppins h-[calc(100vh-96px)] overflow-y-auto rounded-t bg-[#f8f8f8]">
+                <div className="font-poppins h-[calc(100vh-96px)] overflow-y-auto rounded-t bg-[#f8f8f8] p-5">
                   {children}
                 </div>
               </PrivateRoute>

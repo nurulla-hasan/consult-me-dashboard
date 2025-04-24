@@ -58,7 +58,7 @@ export default function UserGrowthChart() {
             </div>
             <ResponsiveContainer width="100%" height={250}>
                 <BarChart
-                    className='text-[8px]'
+                    className='text-[12px]'
                     data={chartData[selectedYear]}
                     barSize={5}
                 >

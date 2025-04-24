@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       {/* Top Info */}
-      <div className="p-4 flex flex-col gap-4">
+      <div className="flex flex-col gap-4">
         <div className="text-black">
           <div className="flex justify-evenly gap-4">
             <div className="flex flex-col justify-center items-center bg-[#0bc8bb13] rounded-xl py-4 w-full">
@@ -62,7 +62,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="">
+        <div>
           <EarningGrowthChart2 />
         </div>
       </div>
