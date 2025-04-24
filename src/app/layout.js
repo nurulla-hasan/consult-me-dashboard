@@ -50,11 +50,11 @@ export default function RootLayout({ children }) {
           />
           <div className="h-screen flex">
             {/* Sidebar */}
-            <aside className={`${isHideLayout ? "hidden" : ""} w-62 bg-[#FDFDF5] flex flex-col justify-between pb-10`}>
+            <aside className={`${isHideLayout ? "hidden" : ""} w-78 bg-[#FDFDF5] flex flex-col justify-between pb-10`}>
               <div>
                 {/* Logo */}
                 <div className="flex items-center justify-center">
-                  <Image src="/images/logo.png" width={125} height={60} alt="Logo" />
+                  <Image src="/images/logo.png" width={150} height={60} alt="Logo" />
                 </div>
 
                 {/* Navigation */}
@@ -70,7 +70,7 @@ export default function RootLayout({ children }) {
                           : "text-[#00A89D] hover:bg-[#00A89D] bg-[#FEFEFE] hover:text-white"
                           }`}
                       >
-                        <span className='flex items-center gap-2'>
+                        <span className='flex text-lg items-center gap-2'>
                           {item.icon}
                           {item.label}
                         </span>
@@ -84,7 +84,7 @@ export default function RootLayout({ children }) {
                       onClick={() => setSettingsOpen(!settingsOpen)}
                       className={`w-full cursor-pointer text-left px-4 py-2 rounded-sm text-[#00A89D] flex justify-between items-center transition-all duration-300 ${settingsOpen ? "bg-[#058279] text-white" : "bg-[#FEFEFE]"}`}
                     >
-                      <p className='flex items-center gap-2'>
+                      <p className='flex items-center gap-2 text-lg'>
                         <LuSettings size={20} />
                         <span>Settings</span>
                       </p>
@@ -94,7 +94,7 @@ export default function RootLayout({ children }) {
                     <AnimatePresence initial={false}>
                       {settingsOpen && (
                         <motion.div
-                          className="flex flex-col gap-1 text-[15px] font-medium mt-1 pr-2"
+                          className="flex flex-col gap-1 text-[15px] font-medium mt-1 pr-5"
                           initial={{ opacity: 0, y: -10 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -10 }}
@@ -106,7 +106,7 @@ export default function RootLayout({ children }) {
                               <Link
                                 key={item.label}
                                 href={item.href}
-                                className={`px-4 py-2 text-sm rounded-sm transition-colors duration-200 ${isActive
+                                className={`px-4 py-2 text-lg rounded-sm transition-colors duration-200 ${isActive
                                   ? "bg-[#058279] text-white"
                                   : "text-[#00A89D] hover:bg-[#00A89D] bg-[#FEFEFE] hover:text-white"
                                   }`}
@@ -135,7 +135,7 @@ export default function RootLayout({ children }) {
 
               {/* Page content */}
               <PrivateRoute>
-                <div className="font-poppins h-[calc(100vh-96px)] rounded-t bg-[#f8f8f8]">
+                <div className="font-poppins h-[calc(100vh-96px)] overflow-y-auto rounded-t bg-[#f8f8f8]">
                   {children}
                 </div>
               </PrivateRoute>
