@@ -1,16 +1,15 @@
 "use client";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
 
 const VerifyEmailForm = () => {
   const router = useRouter()
-  const [code, setCode] = useState(["", "", "", "", ""]);
+  const [code, setCode] = useState(["", "", "", "", "", ""]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const inputRefs = useRef([]);
 
   useEffect(() => {
-    inputRefs.current = inputRefs.current.slice(0, 5);
+    inputRefs.current = inputRefs.current.slice(0, 6);
   }, []);
 
   const handleChange = (index, value) => {
@@ -20,7 +19,7 @@ const VerifyEmailForm = () => {
     newCode[index] = value;
     setCode(newCode);
 
-    if (value && index < 4) {
+    if (value && index < 5) {
       inputRefs.current[index + 1]?.focus();
     }
   };
@@ -34,7 +33,7 @@ const VerifyEmailForm = () => {
   const handlePaste = (e) => {
     e.preventDefault();
     const pastedData = e.clipboardData.getData("text/plain").trim();
-    if (/^\d{5}$/.test(pastedData)) {
+    if (/^\d{6}$/.test(pastedData)) {
       const newCode = pastedData.split("");
       setCode(newCode);
       inputRefs.current[4]?.focus();
@@ -43,7 +42,7 @@ const VerifyEmailForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (code.join("").length !== 5) return;
+    if (code.join("").length !== 6) return;
 
     setIsSubmitting(true);
     console.log("Verifying code:", code.join(""));
@@ -51,7 +50,7 @@ const VerifyEmailForm = () => {
     setTimeout(() => {
       setIsSubmitting(false);
       router.push("/auth/reset-password");
-    }, 1500);
+    }, 1600);
   };
 
   const handleResend = () => {
@@ -60,12 +59,12 @@ const VerifyEmailForm = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen p-3 text-white">
-      <div className="border bg-[#FEFEFEE5] p-14 rounded-2xl w-full max-w-md">
+      <div className="border bg-[#FEFEFEE6] p-14 rounded-2xl w-full max-w-md">
         <h1 className="text-2xl font-medium text-center text-[#333333] mb-4">
           Check Your Email
         </h1>
         <p className="text-center text-[#333333] mb-16 max-w-xs text-xs">
-          We sent a code to your email address. Please enter the 5-digit code.
+          We sent a code to your email address. Please enter the 6-digit code.
         </p>
 
         <form onSubmit={handleSubmit}>
@@ -87,8 +86,8 @@ const VerifyEmailForm = () => {
 
           <button
             type="submit"
-            disabled={isSubmitting || code.join("").length !== 5}
-            className="w-full bg-[#00A89D] border border-gray-400 disabled:cursor-not-allowed text-white py-2 text-xs px-4  hover:bg-[#428a85] transition duration-200 cursor-pointer disabled:opacity-70"
+            disabled={isSubmitting || code.join("").length !== 6}
+            className="w-full bg-[#00A89D] border border-gray-400 disabled:cursor-not-allowed text-white py-2 text-xs px-4  hover:bg-[#428a86] transition duration-200 cursor-pointer disabled:opacity-70"
           >
             {isSubmitting ? "Verifying..." : "Verify"}
           </button>

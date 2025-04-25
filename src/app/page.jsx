@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       {/* Top Info */}
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 p-5">
         <div className="text-black">
           <div className="flex justify-evenly gap-4">
             <div className="flex flex-col justify-center items-center bg-[#0bc8bb13] rounded-xl py-4 w-full">
@@ -25,7 +25,7 @@ export default function Home() {
 
             <div className="flex flex-col justify-center items-center bg-[#0bc8bb13] rounded-xl py-4 w-full">
               <div className="flex flex-col gap-5 items-center justify-center">
-                <h3 className="text-2xl font-medium">Total Consultant</h3>
+                <h3 className="text-2xl font-medium">Total Consultants</h3>
                 <Image
                   src="/images/total-user.png"
                   width={80}
@@ -38,7 +38,7 @@ export default function Home() {
 
             <div className="flex flex-col justify-center items-center bg-[#0bc8bb13] rounded-xl py-4 w-full">
               <div className="flex flex-col gap-5 items-center justify-center ">
-                <h3 className="text-2xl font-medium">Total Earning</h3>
+                <h3 className="text-2xl font-medium">Total Earnings</h3>
                 <Image
                   src="/images/total-user.png"
                   width={80}

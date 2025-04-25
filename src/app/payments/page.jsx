@@ -1,8 +1,10 @@
 "use client";
+import PaymentModal from "@/components/modal/payment-modal/PaymentModal";
+import PaymentsTable from "@/components/table/payments-table/PaymentsTable";
 import { consult } from "@/data/data";
+import Image from "next/image";
 import { useState } from "react";
 import { FiSearch } from "react-icons/fi";
-import { MdBlockFlipped } from "react-icons/md";
 
 /* ----- attach paid = false to each user once ----- */
 const initialUsers = consult.map((u) => ({ ...u, paid: false }));
@@ -12,14 +14,26 @@ export default function Payments() {
     const [page, setPage] = useState(1);
     const [query, setQuery] = useState("");
     const [data, setData] = useState(initialUsers);
+    const [selectedUser, setSelectedUser] = useState(null); // For storing selected user data
+    const [showModal, setShowModal] = useState(false); // For controlling modal visibility
 
-    /* block / unblock toggle */
-    const handlePaid = (id) =>
+    const handleModalOpen = (user) => {
+        setSelectedUser(user);
+        setShowModal(true);
+    };
+
+    const handleAccept = () => {
         setData((prev) =>
             prev.map((u) =>
-                u.id === id ? { ...u, paid: !u.paid } : u
+                u.id === selectedUser.id ? { ...u, paid: true } : u
             )
         );
+        setShowModal(false); // Close the modal after accepting
+    };
+
+    const handleReject = () => {
+        setShowModal(false); // Close the modal without making changes
+    };
 
     /* filter + paginate */
     const filtered = data.filter((u) =>
@@ -28,8 +42,79 @@ export default function Payments() {
     const pageCount = Math.ceil(filtered.length / pageSize);
     const paged = filtered.slice((page - 1) * pageSize, page * pageSize);
 
+    const renderPagination = () => {
+        const pages = [];
+        const range = 2; // Number of pages to show around the current page
+
+        // Handle pages before and after the current page
+        for (let i = Math.max(page - range, 1); i <= Math.min(page + range, pageCount); i++) {
+            pages.push(i);
+        }
+
+        // Show ellipses if there are gaps in pages
+        const showEllipsisBefore = pages[0] > 2;
+        const showEllipsisAfter = pages[pages.length - 1] < pageCount - 1;
+
+        return (
+            <>
+                {/* Previous Page Button */}
+                <button
+                    disabled={page === 1}
+                    onClick={() => setPage(page - 1)}
+                    className="disabled:text-gray-400 cursor-pointer"
+                >
+                    &lt; Previous
+                </button>
+
+                {/* Ellipsis and First Page */}
+                {showEllipsisBefore && <span className="px-2">...</span>}
+                {showEllipsisBefore && (
+                    <button
+                        onClick={() => setPage(1)}
+                        className="w-6 h-6 rounded-full text-center cursor-pointer"
+                    >
+                        1
+                    </button>
+                )}
+
+                {/* Page Numbers */}
+                {pages.map((p) => (
+                    <button
+                        key={p}
+                        onClick={() => setPage(p)}
+                        className={`w-6 h-6 rounded-full text-center cursor-pointer ${p === page ? "bg-teal-600 text-white" : ""
+                            }`}
+                    >
+                        {p}
+                    </button>
+                ))}
+
+                {/* Ellipsis and Last Page */}
+                {showEllipsisAfter && <span className="px-2">...</span>}
+                {showEllipsisAfter && (
+                    <button
+                        onClick={() => setPage(pageCount)}
+                        className="w-6 h-6 rounded-full text-center cursor-pointer"
+                    >
+                        {pageCount}
+                    </button>
+                )}
+
+                {/* Next Page Button */}
+                <button
+                    disabled={page === pageCount}
+                    onClick={() => setPage(page + 1)}
+                    className="disabled:text-gray-400 cursor-pointer"
+                >
+                    Next &gt;
+                </button>
+            </>
+        );
+    };
+
+
     return (
-        <div className="space-y-6 text-black">
+        <div className="space-y-4 text-black p-5">
             {/* header + search */}
             <div className="flex justify-between">
                 <h1 className="text-xl font-medium">User Management</h1>
@@ -48,49 +133,12 @@ export default function Payments() {
             </div>
 
             {/* table */}
-            <div className="overflow-x-auto h-[72vh] scrl-hide rounded-md border border-gray-200">
-                <table className="min-w-full text-sm">
-                    <thead className="bg-[#00A89D] text-white sticky top-0">
-                        <tr>
-                            <th className="px-4 py-3 text-left">#SI</th>
-                            <th className="px-4 py-3 text-left">User Name</th>
-                            <th className="px-4 py-3 text-left">Service Name</th>
-                            <th className="px-4 py-3 text-left">Email</th>
-                            <th className="px-4 py-3 text-left">Contact Number</th>
-                            <th className="px-4 py-3 text-left">Location</th>
-                            <th className="px-4 py-3 text-center">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {paged.map((u) => (
-                            <tr
-                                key={u.id}
-                                className={`odd:bg-gray-50`}>
-                                <td className="px-4 py-3">{u.id}</td>
-                                <td className="px-4 py-3 flex items-center gap-2">
-                                    <img src={u.avatar} alt="" className="w-9 h-9 rounded-full" />
-                                    {u.name}
-                                </td>
-                                <td className="px-4 py-3">{u.service}</td>
-                                <td className="px-4 py-3">{u.email}</td>
-                                <td className="px-4 py-3">{u.phone}</td>
-                                <td className="px-4 py-3">{u.location}</td>
-                                <td className="px-4 py-3 flex justify-center">
-                                    <button
-                                        onClick={() => handlePaid(u.id)}
-                                        className={`w-28 h-8 rounded-full flex items-center justify-center cursor-pointer transition-colors ${u.paid
-                                                ? "border border-green-500 text-green-600 hover:border-green-600"
-                                                : "border border-[#CD9B3A] text-[#CD9B3A] hover:border-[#CD9B3A]"
-                                            }`}
-                                    >
-                                        {u.paid ? "Paid" : "Due"}
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+            <div className="overflow-x-auto h-[74vh] scrl-hide rounded-md border border-gray-200">
+                <PaymentsTable paged={paged} handleModalOpen={handleModalOpen} />
             </div>
+
+            {/* Modal */}
+            <PaymentModal showModal={showModal} selectedUser={selectedUser} handleReject={handleReject} handleAccept={handleAccept}/>
 
             {/* pagination (unchanged) */}
             <div className="flex justify-evenly items-center text-sm">
@@ -99,32 +147,7 @@ export default function Payments() {
                 </span>
 
                 <div className="flex items-center gap-2">
-                    <button
-                        disabled={page === 1}
-                        onClick={() => setPage((p) => p - 1)}
-                        className="disabled:text-gray-400 cursor-pointer"
-                    >
-                        &lt; Previous
-                    </button>
-
-                    {Array.from({ length: pageCount }).map((_, i) => (
-                        <button
-                            key={i}
-                            onClick={() => setPage(i + 1)}
-                            className={`w-6 h-6 rounded-full text-center cursor-pointer ${i + 1 === page ? "bg-teal-600 text-white" : ""
-                                }`}
-                        >
-                            {i + 1}
-                        </button>
-                    ))}
-
-                    <button
-                        disabled={page === pageCount}
-                        onClick={() => setPage((p) => p + 1)}
-                        className="disabled:text-gray-400 cursor-pointer"
-                    >
-                        Next &gt;
-                    </button>
+                    {renderPagination()}
                 </div>
             </div>
         </div>

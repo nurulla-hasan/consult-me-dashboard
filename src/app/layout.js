@@ -129,13 +129,13 @@ export default function RootLayout({ children }) {
             </aside>
 
             {/* Main content */}
-            <main className="flex-1 overflow-auto bg-[#FEFFF9]">
+            <main className="flex-1 overflow-auto scrl-hide bg-[#FEFFF9]">
               {/* Top bar */}
               <Topbar isHideLayout={isHideLayout} />
 
               {/* Page content */}
               <PrivateRoute>
-                <div className="font-poppins h-[calc(100vh-96px)] overflow-y-auto rounded-t bg-[#f8f8f8] p-5">
+                <div className={`font-poppins ${hideRoutes ? "" : "h-[calc(100vh-96px)]"}  overflow-y-auto rounded-t bg-[#f8f8f8]`}>
                   {children}
                 </div>
               </PrivateRoute>

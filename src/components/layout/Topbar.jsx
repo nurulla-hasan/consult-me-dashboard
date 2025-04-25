@@ -9,7 +9,7 @@ const Topbar = ({ isHideLayout }) => {
 
     return (
         <>
-            <div className={`${isHideLayout ? "hidden" : ""} flex justify-end items-center gap-4 bg-[#FDFDF5] h-24 pr-12`}>
+            <div className={`${isHideLayout ? "hidden" : ""} sticky top-0 flex justify-end items-center gap-4 bg-[#FDFDF5] h-24 pr-12`}>
                 <button className="w-10 h-10 rounded-full bg-[#E6F8F7] flex items-center justify-center cursor-pointer">
                     <IoMdNotificationsOutline color='#00A89D' size={20} />
                 </button>
