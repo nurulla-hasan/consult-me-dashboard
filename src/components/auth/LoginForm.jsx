@@ -1,41 +1,40 @@
-"use client"
-import { useState } from "react"
-import { useForm } from "react-hook-form"
+"use client";
+
+import { Suspense } from "react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { PiEyeLight } from "react-icons/pi";
 import { PiEyeSlash } from "react-icons/pi";
-import toast from "react-hot-toast"
-import Link from "next/link"
-import { useDispatch } from "react-redux"
-import { useRouter, useSearchParams } from "next/navigation"
-import { login } from "@/redux/features/authSlice"
+import toast from "react-hot-toast";
+import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { useRouter, useSearchParams } from "next/navigation";
+import { login } from "@/redux/features/authSlice";
 
-const LoginForm = () => {
+const LoginFormContent = () => {
   const dispatch = useDispatch();
-
   const router = useRouter();
-  const searchParams = useSearchParams()
-  const redirect = searchParams.get("redirect") || "/"
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get("redirect") || "/";
 
-
-  const [showPassword, setShowPassword] = useState(false)
-  const [rememberPassword, setRememberPassword] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
+  const [rememberPassword, setRememberPassword] = useState(false);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm()
+  } = useForm();
 
   const onSubmit = (data) => {
     const user = {
       ...data,
-      name: "Your Name"
-    }
+      name: "Your Name",
+    };
     dispatch(login(user));
-    toast.success('Login Success!');
-    router.push(redirect)
-    // Handle form submission
-  }
+    toast.success("Login Success!");
+    router.push(redirect);
+  };
 
   return (
     <div className="flex items-center justify-center min-h-screen p-3 text-white">
@@ -52,8 +51,9 @@ const LoginForm = () => {
               id="email"
               type="email"
               placeholder="Enter your email"
-              className={`w-full px-3 py-2 border  text-[#5C5C5C] text-xs bg-white rounded-sm ${errors.email ? "border-red-500" : "border-[#00A89D]"
-                }  focus:outline-none cursor-pointer`}
+              className={`w-full px-3 py-2 border  text-[#5C5C5C] text-xs bg-white rounded-sm ${
+                errors.email ? "border-red-500" : "border-[#00A89D]"
+              } focus:outline-none cursor-pointer`}
               {...register("email", {
                 required: "Email is required",
                 pattern: {
@@ -74,8 +74,9 @@ const LoginForm = () => {
                 id="password"
                 type={showPassword ? "text" : "password"}
                 placeholder="********"
-                className={`w-full px-3 py-2 border text-[#5C5C5C] text-xs bg-white rounded-sm ${errors.password ? "border-red-500" : "border-[#00A89D]"
-                  }  focus:outline-none cursor-pointer`}
+                className={`w-full px-3 py-2 border text-[#5C5C5C] text-xs bg-white rounded-sm ${
+                  errors.password ? "border-red-500" : "border-[#00A89D]"
+                } focus:outline-none cursor-pointer`}
                 {...register("password", {
                   required: "Password is required",
                 })}
@@ -85,7 +86,11 @@ const LoginForm = () => {
                 className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
                 onClick={() => setShowPassword(!showPassword)}
               >
-                {showPassword ? <PiEyeLight className="h-4 w-4 text-[#00A89D]" /> : <PiEyeSlash className="h-4 w-4 text-[#00A89D]" />}
+                {showPassword ? (
+                  <PiEyeLight className="h-4 w-4 text-[#00A89D]" />
+                ) : (
+                  <PiEyeSlash className="h-4 w-4 text-[#00A89D]" />
+                )}
               </button>
             </div>
             {errors.password && <p className="mt-1 text-xs text-red-500">{errors.password.message}</p>}
@@ -98,10 +103,9 @@ const LoginForm = () => {
                 id="remember"
                 checked={rememberPassword}
                 onChange={() => setRememberPassword(!rememberPassword)}
-                className="h-3 w-3 text-[#00A89D] accent-[#079891]  cursor-pointer"
-              // {...register("remember")}
+                className="h-3 w-3 text-[#00A89D] accent-[#079891] cursor-pointer"
               />
-              <label htmlFor="remember" className="ml-2 text-xs text-[#333333] ">
+              <label htmlFor="remember" className="ml-2 text-xs text-[#333333]">
                 Remember Password
               </label>
             </div>
@@ -112,14 +116,22 @@ const LoginForm = () => {
 
           <button
             type="submit"
-            className="w-full bg-[#00A89D] text-white py-2 text-xs px-4  hover:bg-[#428a85] transition duration-200 cursor-pointer rounded-sm"
+            className="w-full bg-[#00A89D] text-white py-2 text-xs px-4 hover:bg-[#428a85] transition duration-200 cursor-pointer rounded-sm"
           >
             Sign in
           </button>
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default LoginForm
+const LoginForm = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <LoginFormContent />
+    </Suspense>
+  );
+};
+
+export default LoginForm;
