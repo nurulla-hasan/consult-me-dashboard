@@ -387,3 +387,20 @@ export const consult = [
     { name: "Farming", icon: "farming.png" },
     // ... (repeat or load as many as needed)
   ];
+
+ export const notifications = [
+    { message: "A new user has completed the vetting process and registered on Local coupon.", time: "Just Now" },
+    { message: "Feedback forms for the last episode have been completed by participants.", time: "5 min ago" },
+    { message: "Reminder: The next podcast episode is scheduled for tomorrow at 5 PM.", time: "30 min ago" },
+    { message: "Podcast episode has been successfully completed.", time: "6 hours ago" },
+    { message: "Reminder: Prepare questions for the primary user in the next podcast episode.", time: "8 hours ago" },
+  ];
+
+
+
+  export const user = {
+    name : "Robert Smith",
+    email : "robertsmith@gmail.com",
+    contact : "+99007007007",
+    address : "79/A Joker Villa, Gotham City"
+  }

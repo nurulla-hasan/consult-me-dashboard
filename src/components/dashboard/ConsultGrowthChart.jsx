@@ -35,12 +35,12 @@ const chartData = {
     ],
 };
 
-export default function EarningGrowthChart() {
+export default function ConsultGrowthChart() {
     const [selectedYear, setSelectedYear] = useState('2024');
     return (
         <div className="bg-white rounded-md p-3 w-full text-[#4c4c4c] shadow-[0px_0px_2px_0px_#00000040]">
             <div className="flex justify-between items-center mb-3">
-                <h2 className="text-lg font-semibold">Earning Growth</h2>
+                <h2 className="text-lg font-semibold">Consult Growth</h2>
                 <div className="relative w-fit">
                     <select
                         value={selectedYear}
@@ -60,7 +60,7 @@ export default function EarningGrowthChart() {
                 <BarChart
                     className='text-[12px]'
                     data={chartData[selectedYear]}
-                    barSize={20}
+                    barSize={5}
                 >
                     <XAxis
                         dataKey="name"

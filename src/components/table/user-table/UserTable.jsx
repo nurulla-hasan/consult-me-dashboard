@@ -3,7 +3,7 @@ import { MdBlockFlipped } from "react-icons/md";
 const UserTable = ({ paged, handleBlock }) => {
     return (
         <>
-            <table className="min-w-full text-sm">
+            <table className="min-w-full text-sm ">
                 <thead className="bg-[#00A89D] text-white sticky top-0">
                     <tr>
                         <th className="px-4 py-3 text-left">#SI</th>

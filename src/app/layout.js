@@ -48,13 +48,13 @@ export default function RootLayout({ children }) {
             position="top-center"
             reverseOrder={false}
           />
-          <div className="h-screen flex">
+          <div className="h-screen flex container mx-auto max-w-full bg-[#f5fdfd]">
             {/* Sidebar */}
-            <aside className={`${isHideLayout ? "hidden" : ""} w-78 bg-[#FDFDF5] flex flex-col justify-between pb-10`}>
+            <aside className={`${isHideLayout ? "hidden" : ""} w-78  flex flex-col justify-between pb-10 bg-[#f5fdfd]`}>
               <div>
                 {/* Logo */}
                 <div className="flex items-center justify-center">
-                  <Image src="/images/logo.png" width={150} height={60} alt="Logo" />
+                  <Image src="/images/logo3.png" width={150} height={60} alt="Logo" />
                 </div>
 
                 {/* Navigation */}
@@ -129,13 +129,13 @@ export default function RootLayout({ children }) {
             </aside>
 
             {/* Main content */}
-            <main className="flex-1 overflow-auto scrl-hide bg-[#FEFFF9]">
+            <main className="flex-1 overflow-auto scrl-hide bg-[#f5fdfd]">
               {/* Top bar */}
               <Topbar isHideLayout={isHideLayout} />
 
               {/* Page content */}
               <PrivateRoute>
-                <div className={`font-poppins ${hideRoutes ? "" : "h-[calc(100vh-96px)]"}  overflow-y-auto rounded-t bg-[#f8f8f8]`}>
+                <div className={`font-poppins ${hideRoutes ? "" : "h-[calc(100vh-96px)]"} overflow-y-auto rounded-t-lg bg-[#f8f8f8] `}>
                   {children}
                 </div>
               </PrivateRoute>

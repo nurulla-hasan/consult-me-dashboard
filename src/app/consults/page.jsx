@@ -1,8 +1,9 @@
 "use client";
+import PageContainer from "@/components/container/PageContainer";
 import ConsultantModal from "@/components/modal/consultant-modal/ConsultantModal";
+import Pagination from "@/components/pagination/Pagination";
 import ConsultTable from "@/components/table/consult-table/ConsultTable";
 import { consult } from "@/data/data";
-import Image from "next/image";
 import { useState } from "react";
 import { FiSearch } from "react-icons/fi";
 
@@ -45,78 +46,9 @@ export default function Consults() {
   const pageCount = Math.ceil(filtered.length / pageSize);
   const paged = filtered.slice((page - 1) * pageSize, page * pageSize);
 
-  const renderPagination = () => {
-    const pages = [];
-    const range = 2; // Number of pages to show around the current page
-
-    // Handle pages before and after the current page
-    for (let i = Math.max(page - range, 1); i <= Math.min(page + range, pageCount); i++) {
-      pages.push(i);
-    }
-
-    // Show ellipses if there are gaps in pages
-    const showEllipsisBefore = pages[0] > 2;
-    const showEllipsisAfter = pages[pages.length - 1] < pageCount - 1;
-
-    return (
-      <>
-        {/* Previous Page Button */}
-        <button
-          disabled={page === 1}
-          onClick={() => setPage(page - 1)}
-          className="disabled:text-gray-400 cursor-pointer"
-        >
-          &lt; Previous
-        </button>
-
-        {/* Ellipsis and First Page */}
-        {showEllipsisBefore && <span className="px-2">...</span>}
-        {showEllipsisBefore && (
-          <button
-            onClick={() => setPage(1)}
-            className="w-6 h-6 rounded-full text-center cursor-pointer"
-          >
-            1
-          </button>
-        )}
-
-        {/* Page Numbers */}
-        {pages.map((p) => (
-          <button
-            key={p}
-            onClick={() => setPage(p)}
-            className={`w-6 h-6 rounded-full text-center cursor-pointer ${p === page ? "bg-teal-600 text-white" : ""
-              }`}
-          >
-            {p}
-          </button>
-        ))}
-
-        {/* Ellipsis and Last Page */}
-        {showEllipsisAfter && <span className="px-2">...</span>}
-        {showEllipsisAfter && (
-          <button
-            onClick={() => setPage(pageCount)}
-            className="w-6 h-6 rounded-full text-center cursor-pointer"
-          >
-            {pageCount}
-          </button>
-        )}
-
-        {/* Next Page Button */}
-        <button
-          disabled={page === pageCount}
-          onClick={() => setPage(page + 1)}
-          className="disabled:text-gray-400 cursor-pointer"
-        >
-          Next &gt;
-        </button>
-      </>
-    );
-  };
 
   return (
-    <div className="space-y-4 text-black p-5 h-[calc(100vh-96px)]">
+    <PageContainer>
       {/* header + search */}
       <div className="flex justify-between">
         <h1 className="text-xl font-medium">Consultant Management</h1>
@@ -148,9 +80,9 @@ export default function Consults() {
           Showing {(page - 1) * pageSize + 1}-{Math.min(page * pageSize, filtered.length)} of {filtered.length}
         </span>
         <div className="flex items-center gap-2">
-          {renderPagination()}
+          <Pagination page={page} setPage={setPage} pageCount={pageCount}/>
         </div>
       </div>
-    </div>
+    </PageContainer>
   );
 }

@@ -1,30 +1,32 @@
 const Card = ({ handleDelete, handleEdit, cat, idx }) => {
     return (
         <>
-            <img
-                src={
-                    typeof cat.icon === "string" &&
-                        cat.icon.startsWith("blob:")
-                        ? cat.icon
-                        : `/images/${cat.icon}`
-                }
-                alt={cat.name}
-                className="w-16 h-16 mx-auto mb-2"
-            />
-            <h3 className="font-semibold text-lg">{cat.name}</h3>
-            <div className="flex justify-center gap-2 mt-2">
-                <button
-                    onClick={() => handleDelete(idx)}
-                    className="border border-teal-400 text-sm px-3 py-1 rounded text-teal-500 cursor-pointer"
-                >
-                    Delete
-                </button>
-                <button
-                    onClick={() => handleEdit(idx)}
-                    className="bg-teal-500 text-white text-sm px-3 py-1 rounded cursor-pointer"
-                >
-                    Edit
-                </button>
+            <div className="bg-white p-4 rounded shadow">
+                <img
+                    src={
+                        typeof cat.icon === "string" &&
+                            cat.icon.startsWith("blob:")
+                            ? cat.icon
+                            : `/images/${cat.icon}`
+                    }
+                    alt={cat.name}
+                    className="w-16 h-16 mx-auto mb-2"
+                />
+                <h3 className="font-semibold text-lg">{cat.name}</h3>
+                <div className="flex justify-center gap-2 mt-2">
+                    <button
+                        onClick={() => handleDelete(idx)}
+                        className="border border-teal-400 text-sm px-3 py-1 rounded text-teal-500 cursor-pointer"
+                    >
+                        Delete
+                    </button>
+                    <button
+                        onClick={() => handleEdit(idx)}
+                        className="bg-teal-500 text-white text-sm px-3 py-1 rounded cursor-pointer"
+                    >
+                        Edit
+                    </button>
+                </div>
             </div>
         </>
     );

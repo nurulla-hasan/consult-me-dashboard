@@ -1,6 +1,6 @@
-import EarningGrowthChart2 from "@/components/dashboard/EarningGrowthChart2";
-import EarningGrowthChart from "@/components/dashboard/EarningGrowthChart";
-import UserGrowthChart from "@/components/dashboard/UserGrowthChart";
+import EarningGrowthChart2 from "@/components/dashboard/EarningGrowthChart";
+import EarningGrowthChart from "@/components/dashboard/UserGrowthChart";
+import UserGrowthChart from "@/components/dashboard/ConsultGrowthChart";
 import Image from "next/image";
 
 export default function Home() {
@@ -64,6 +64,7 @@ export default function Home() {
 
         <div>
           <EarningGrowthChart2 />
+          {/* <UserGrowthChart/> */}
         </div>
       </div>
     </>

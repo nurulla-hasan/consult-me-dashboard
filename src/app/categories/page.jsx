@@ -1,10 +1,10 @@
 "use client";
 import Card from "@/components/card/category-card/Card";
+import PageContainer from "@/components/container/PageContainer";
 import CategoryModal from "@/components/modal/category-modal/CategoryModal";
+import Pagination from "@/components/pagination/Pagination";
 import { dummyCategories } from "@/data/data";
 import { useState } from "react";
-import { FaRegImage } from "react-icons/fa";
-import { FaArrowLeft } from "react-icons/fa6";
 import { HiOutlinePlusSm } from "react-icons/hi";
 
 
@@ -19,7 +19,7 @@ export default function CategoryManagement() {
 
     // Pagination states
     const [page, setPage] = useState(1);
-    const categoriesPerPage = 18;
+    const categoriesPerPage = 24;
     const pageCount = Math.ceil(categories.length / categoriesPerPage);
     const paginatedCategories = categories.slice(
         (page - 1) * categoriesPerPage,
@@ -72,81 +72,8 @@ export default function CategoryManagement() {
         }
     };
 
-    const renderPagination = () => {
-        const pages = [];
-        const range = 2;
-
-        for (
-            let i = Math.max(page - range, 1);
-            i <= Math.min(page + range, pageCount);
-            i++
-        ) {
-            pages.push(i);
-        }
-
-        const showEllipsisBefore = pages[0] > 2;
-        const showEllipsisAfter = pages[pages.length - 1] < pageCount - 1;
-
-        return (
-            <div className="flex items-center justify-center gap-2 mt-6">
-                <button
-                    disabled={page === 1}
-                    onClick={() => setPage(page - 1)}
-                    className="disabled:text-gray-400 cursor-pointer text-sm"
-                >
-                    &lt; Prev
-                </button>
-
-                {showEllipsisBefore && (
-                    <>
-                        <button
-                            onClick={() => setPage(1)}
-                            className="w-6 h-6 rounded-full text-center text-sm cursor-pointer"
-                        >
-                            1
-                        </button>
-                        <span>...</span>
-                    </>
-                )}
-
-                {pages.map((p) => (
-                    <button
-                        key={p}
-                        onClick={() => setPage(p)}
-                        className={`w-6 h-6 rounded-full text-center text-sm cursor-pointer ${p === page
-                            ? "bg-teal-600 text-white"
-                            : ""
-                            }`}
-                    >
-                        {p}
-                    </button>
-                ))}
-
-                {showEllipsisAfter && (
-                    <>
-                        <span>...</span>
-                        <button
-                            onClick={() => setPage(pageCount)}
-                            className="w-7 h-7 rounded-full text-center text-sm cursor-pointer"
-                        >
-                            {pageCount}
-                        </button>
-                    </>
-                )}
-
-                <button
-                    disabled={page === pageCount}
-                    onClick={() => setPage(page + 1)}
-                    className="px-3 py-1 text-sm disabled:opacity-50 cursor-pointer"
-                >
-                    Next &gt;
-                </button>
-            </div>
-        );
-    };
-
     return (
-        <div className="space-y-4 p-5 h-[calc(100vh-96px)] overflow-auto  scrl-hide text-[#333333]">
+        <PageContainer>
             <div className="flex justify-between bg-[#f8f8f8]">
                 <h1 className="text-xl font-medium text-[#333333]">
                     Category Management
@@ -160,11 +87,11 @@ export default function CategoryManagement() {
                 </button>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+            <div className="overflow-auto h-[74vh] scrl-hide grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
                 {paginatedCategories.map((cat, idx) => (
                     <div
                         key={idx}
-                        className="bg-white p-4 rounded shadow text-center"
+                        className=" text-center"
                     >
                         <Card
                             handleEdit={handleEdit}
@@ -174,8 +101,17 @@ export default function CategoryManagement() {
                 ))}
             </div>
 
-            {/* Pagination UI */}
-            {renderPagination()}
+            {/* Pagination & Showing Section */}
+            <div className="flex justify-evenly items-center text-sm mt-4">
+                <span className="text-[#00A89D]">
+                    Showing {(page - 1) * categoriesPerPage + 1}-{Math.min(page * categoriesPerPage, categories.length)} of {categories.length}
+                </span>
+
+                <div className="flex items-center gap-2">
+                <Pagination page={page} setPage={setPage} pageCount={pageCount} />
+                </div>
+            </div>
+
 
             <CategoryModal
                 setIsModalOpen={setIsModalOpen}
@@ -185,7 +121,7 @@ export default function CategoryManagement() {
                 categoryName={categoryName}
                 handleIconUpload={handleIconUpload}
                 handleSubmit={handleSubmit}
-                />
-        </div>
+            />
+        </PageContainer>
     );
 }

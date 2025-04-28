@@ -1,10 +1,10 @@
 import Image from "next/image";
 
 
-const ConsultantModal = ({showModal, selectedUser, handleReject, handleAccept}) => {
-    return (
-        <>
-            {showModal && selectedUser && (
+const ConsultantModal = ({ showModal, selectedUser, handleReject, handleAccept }) => {
+  return (
+    <>
+      {showModal && selectedUser && (
         <div className="fixed h-[100vh] inset-0 flex justify-center items-center bg-black/50 bg-opacity-50 z-50">
           <div className="bg-white rounded-xl min-w-lg  p-4">
             <div className="bg-[#00a89dbc] rounded-xl h-52 flex gap-3 justify-center items-center flex-col mb-4">
@@ -14,32 +14,39 @@ const ConsultantModal = ({showModal, selectedUser, handleReject, handleAccept}) 
                 <p>Consultant</p>
               </div>
             </div>
-            <div className="mb-10 px-6">
+            <div className="mb-10 px-6 flex gap-24">
               <div className="space-y-4 *:space-y-1">
                 <div>
-                  <h3 className="text-md font-medium">Name On Card</h3>
+                  <h3 className="text-md font-medium">Name</h3>
                   <p className="text-xs">{selectedUser.name}</p>
                 </div>
+                <div>
+                  <h3 className="text-md font-medium">Phone Number</h3>
+                  <p className="text-xs">{selectedUser.phone}</p>
+                </div>
+                <div>
+                  <h3 className="text-md font-medium">Location</h3>
+                  <p className="text-xs">{selectedUser.location}</p>
+                </div>
+              </div>
+
+              <div className="space-y-4 *:space-y-1">
                 <div>
                   <h3 className="text-md font-medium">Email</h3>
                   <p className="text-xs">{selectedUser.email}</p>
                 </div>
                 <div>
-                  <h3 className="text-md font-medium">Payment Method</h3>
-                  <p className="text-xs">Stripe</p>
+                  <h3 className="text-md font-medium">Consult Service</h3>
+                  <p className="text-xs">{selectedUser.service}</p>
                 </div>
-                <div>
-                  <h3 className="text-md font-medium">Card Number</h3>
-                  <p className="text-xs">5485 6548 1256</p>
-                </div>
-                <div>
-                  <h3 className="text-md font-medium">Security Code</h3>
-                  <p className="text-xs">1236</p>
-                </div>
-                <div>
-                  <h3 className="text-md font-medium">Amount</h3>
-                  <p className="text-xs">$200</p>
-                </div>
+              </div>
+            </div>
+
+            <div className="mb-10 px-6">
+              <h3 className="text-md font-medium">NID & Licence</h3>
+              <div className="flex gap-3">
+                <Image src={selectedUser.nid} width={130} height={120} alt="nid" className="rounded-lg" />
+                <Image src={selectedUser.licence} width={120} height={120} alt="nid" className="rounded-lg" />
               </div>
             </div>
 
@@ -61,8 +68,9 @@ const ConsultantModal = ({showModal, selectedUser, handleReject, handleAccept}) 
           </div>
         </div>
       )}
-        </>
-    );
+    </>
+  );
 };
 
 export default ConsultantModal;
+
