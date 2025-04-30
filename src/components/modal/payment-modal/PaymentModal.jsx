@@ -33,10 +33,6 @@ const PaymentModal = ({ showModal, selectedUser, handleReject, handleAccept }) =
                                     <p className="text-xs">5485 6548 1256</p>
                                 </div>
                                 <div>
-                                    <h3 className="text-md font-medium">Security Code</h3>
-                                    <p className="text-xs">1236</p>
-                                </div>
-                                <div>
                                     <h3 className="text-md font-medium">Amount</h3>
                                     <p className="text-xs">$200</p>
                                 </div>
