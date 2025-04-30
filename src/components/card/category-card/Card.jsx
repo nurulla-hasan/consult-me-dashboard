@@ -1,15 +1,14 @@
+import Image from "next/image";
+
 const Card = ({ handleDelete, handleEdit, cat, idx }) => {
     return (
         <>
-            <div className="bg-white p-4 rounded shadow">
-                <img
-                    src={
-                        typeof cat.icon === "string" &&
-                            cat.icon.startsWith("blob:")
-                            ? cat.icon
-                            : `/images/${cat.icon}`
-                    }
+            <div className="bg-white p-4 rounded shadow flex flex-col justify-center items-center h-fit">
+                <Image
+                    src={cat?.icon}
                     alt={cat.name}
+                    width={200}
+                    height={200}
                     className="w-16 h-16 mx-auto mb-2"
                 />
                 <h3 className="font-semibold text-lg">{cat.name}</h3>

@@ -35,21 +35,6 @@ You agree not to:
 
 6. Intellectual Property
 Content in the App, including logos and software, is owned by [App Name] and cannot be used without permission.
-
-7. Privacy Policy
-Your use of the App is governed by our Privacy Policy, which is incorporated into these Terms.
-
-8. Dispute Resolution
-Disputes will be resolved through [Arbitration/Mediation] in [Location]. Disputes are handled individually, not as a class action.
-
-9. Limitation of Liability
-[App Name] is not liable for any damages resulting from the use or inability to use the App.
-
-10. Termination
-We may suspend or terminate your account for violations of these Terms. Your access will be revoked upon termination.
-
-11. Modifications to the Terms
-We may modify these Terms at any time. Continued use after changes indicates acceptance of the updated Terms.
 `;
 
 const editorConfig = {
@@ -88,8 +73,8 @@ const Terms = () => {
   };
 
   return (
-    <div className="space-y-4 text-[#333333] m-5 h-[calc(100vh-130px)] overflow-auto scrl-hide">
-      <div className="flex flex-col gap-6">
+    <div className="space-y-4 text-[#333333] m-5 overflow-auto scrl-hide">
+      <div className="flex flex-col justify-between gap-6 h-[85vh]">
         <div>
           <h2 className="text-xl font-medium text-gray-800">Terms and Conditions</h2>
           <LexicalComposer initialConfig={editorConfig}>

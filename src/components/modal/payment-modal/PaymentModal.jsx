@@ -25,14 +25,6 @@ const PaymentModal = ({ showModal, selectedUser, handleReject, handleAccept }) =
                                     <p className="text-xs">{selectedUser.email}</p>
                                 </div>
                                 <div>
-                                    <h3 className="text-md font-medium">Payment Method</h3>
-                                    <p className="text-xs">Stripe</p>
-                                </div>
-                                <div>
-                                    <h3 className="text-md font-medium">Card Number</h3>
-                                    <p className="text-xs">5485 6548 1256</p>
-                                </div>
-                                <div>
                                     <h3 className="text-md font-medium">Amount</h3>
                                     <p className="text-xs">$200</p>
                                 </div>

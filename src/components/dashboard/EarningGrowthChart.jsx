@@ -38,7 +38,7 @@ const chartData = {
 export default function EarningGrowthChart() {
     const [selectedYear, setSelectedYear] = useState('2024');
     return (
-        <div className="bg-white rounded-md p-3 w-full text-[#4c4c4c] shadow-[0px_0px_2px_0px_#00000040]">
+        <div className="bg-white rounded-md p-4 w-full text-[#4c4c4c] shadow-[0px_4px_4px_0px_#00000040]">
             <div className="flex justify-between items-center mb-3">
                 <h2 className="text-lg font-semibold">Earning Growth</h2>
                 <div className="relative w-fit">
@@ -56,11 +56,12 @@ export default function EarningGrowthChart() {
                     </div>
                 </div>
             </div>
-            <ResponsiveContainer width="100%" height={250}>
+            <ResponsiveContainer width="100%" height={200}>
                 <BarChart
                     className='text-[12px]'
                     data={chartData[selectedYear]}
                     barSize={20}
+                    margin={{ top: 0, right: 0, left: -24, bottom: -10 }}
                 >
                     <XAxis
                         dataKey="name"
@@ -73,15 +74,15 @@ export default function EarningGrowthChart() {
                         tickLine={false}
                     />
                     <Tooltip wrapperStyle={{ fontSize: '14px' }}/>
-                    <Legend
+                    {/* <Legend
                         layout="horizontal"
                         verticalAlign="top"
                         align="right"
                         iconType="circle"
                         wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }}
-                    />
-                    <Bar dataKey="active" fill="#107A7A" />
-                    <Bar dataKey="cancel" fill="#2FCFCF" />
+                    /> */}
+                    <Bar dataKey="active" fill="#107A7A" radius={[10, 10, 0, 0]}/>
+                    <Bar dataKey="cancel" fill="#2FCFCF" radius={[10, 10, 0, 0]}/>
                 </BarChart>
             </ResponsiveContainer>
         </div>

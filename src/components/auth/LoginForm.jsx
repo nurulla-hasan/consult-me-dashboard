@@ -29,7 +29,7 @@ const LoginFormContent = () => {
   const onSubmit = (data) => {
     const user = {
       ...data,
-      name: "Your Name",
+      name: "Leticia",
     };
     dispatch(login(user));
     toast.success("Login Success!");

@@ -72,8 +72,8 @@ const About = () => {
     };
 
     return (
-        <div className="space-y-4 text-[#333333] m-5 h-[calc(100vh-130px)] overflow-auto scrl-hide">
-            <div className="flex flex-col gap-6">
+        <div className="space-y-4 text-[#333333] m-5 overflow-auto scrl-hide">
+            <div className="flex flex-col justify-between gap-6 h-[85vh]">
                 <div>
                     <h2 className="text-xl font-medium text-gray-800">About Us</h2>
                     <LexicalComposer initialConfig={editorConfig}>
@@ -90,7 +90,7 @@ const About = () => {
                     </LexicalComposer>
                 </div>
 
-                <div className="flex justify-center sticky bottom-0 bg-[#f8f8f8]">
+                <div className="flex justify-center  bg-[#f8f8f8]">
                     <button onClick={handleSave} className="px-6 py-2 bg-[#0ABAB5] text-white rounded-md hover:bg-[#099c99] transition cursor-pointer">
                         Save Changes
                     </button>

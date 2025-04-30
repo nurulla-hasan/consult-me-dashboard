@@ -5,13 +5,16 @@ import { FiCamera } from "react-icons/fi";
 import Image from 'next/image';
 import { useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
+import EditProfiletab from '@/components/profile/tabs/EditProfiletab';
+import EditPassTab from '@/components/profile/tabs/EditPassTab';
+import { motion, AnimatePresence } from "framer-motion";
 
 const Page = () => {
     const [activeTab, setActiveTab] = useState('profile');
     const [previewImage, setPreviewImage] = useState("/images/avatar.png");
     const fileInputRef = useRef(null);
 
-    const { register, handleSubmit, reset } = useForm({
+    const { register, handleSubmit } = useForm({
         defaultValues: {
             name: user?.name || '',
             email: user?.email || '',
@@ -41,20 +44,32 @@ const Page = () => {
 
     return (
         <PageContainer>
-            <h1 className='text-xl font-medium'>Profile</h1>
-            <div className="flex flex-col items-center justify-center min-h-[80vh]">
-                {/* Avatar */}
-                <div className=' flex flex-col justify-center items-center gap-3 mb-6'>
+            <motion.h1
+                className='text-xl font-medium'
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+            >
+                Profile
+            </motion.h1>
+
+            <div className="flex flex-col items-center justify-start min-h-[80vh]">
+                {/* Avatar Section */}
+                <motion.div
+                    className='flex flex-col justify-center items-center gap-3 mb-6'
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.2 }}
+                >
                     <div className='relative'>
                         <Image
                             src={previewImage}
                             width={100}
                             height={100}
                             alt="Profile Picture"
-                            className='rounded-full object-cover'
+                            className='rounded-full object-cover w-24 h-24'
                         />
 
-                        {/* Camera Button */}
                         <div
                             onClick={() => fileInputRef.current?.click()}
                             className='absolute flex justify-center items-center p-1.5 w-8 h-8 border-2 border-white bg-teal-600 rounded-full top-16 -right-2 cursor-pointer'
@@ -63,8 +78,6 @@ const Page = () => {
                         </div>
                     </div>
                     <h1 className='text-2xl font-medium'>{user?.name}</h1>
-
-                    {/* Hidden file input */}
                     <input
                         type="file"
                         accept="image/*"
@@ -72,9 +85,7 @@ const Page = () => {
                         ref={fileInputRef}
                         onChange={handleImageChange}
                     />
-
-
-                </div>
+                </motion.div>
 
                 {/* Tabs */}
                 <div className="flex gap-6 mb-6">
@@ -100,96 +111,31 @@ const Page = () => {
 
                 {/* Forms */}
                 <div className="w-full max-w-md rounded-lg">
-                    {activeTab === 'profile' && (
-                        <form onSubmit={handleSubmit(onSubmitProfile)} className="space-y-4">
-                            <h3 className='text-xl font-medium text-center'>
-                                Edit Your Profile
-                            </h3>
+                    <AnimatePresence mode="wait">
+                        {activeTab === 'profile' && (
+                            <motion.div
+                                key="profile-tab"
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -20 }}
+                                transition={{ duration: 0.3 }}
+                            >
+                                <EditProfiletab {...{ activeTab, handleSubmit, onSubmitProfile, register }} />
+                            </motion.div>
+                        )}
 
-                            <div>
-                                <label className="block mb-1 font-medium">User Name</label>
-                                <input
-                                    type="text"
-                                    {...register('name')}
-                                    className="w-full border border-teal-400 rounded-md p-2 outline-none"
-                                />
-                            </div>
-
-                            <div>
-                                <label className="block mb-1 font-medium">Email</label>
-                                <input
-                                    type="email"
-                                    {...register('email')}
-                                    className="w-full border border-teal-400 rounded-md p-2 outline-none"
-                                />
-                            </div>
-
-                            <div>
-                                <label className="block mb-1 font-medium">Contact No</label>
-                                <input
-                                    type="text"
-                                    {...register('contact')}
-                                    className="w-full border border-teal-400 rounded-md p-2 outline-none"
-                                />
-                            </div>
-
-                            <div>
-                                <label className="block mb-1 font-medium">Address</label>
-                                <input
-                                    type="text"
-                                    {...register('address')}
-                                    className="w-full border border-teal-400 rounded-md p-2 outline-none"
-                                />
-                            </div>
-
-                            <div className='w-full text-center'>
-                                <button type="submit" className="mt-4 px-8 bg-teal-500 hover:bg-teal-600 text-white py-2 rounded-md cursor-pointer">
-                                    Save Changes
-                                </button>
-                            </div>
-                        </form>
-                    )}
-
-                    {activeTab === 'password' && (
-                        <form onSubmit={handleSubmit(onSubmitPassword)} className="space-y-4">
-                            <h3 className='text-2xl font-medium text-center'>
-                                Change Password
-                            </h3>
-
-                            <div>
-                                <label className="block mb-1 font-medium">Current Password</label>
-                                <input
-                                    type="password"
-                                    {...register('currentPassword')}
-                                    className="w-full border border-teal-400 rounded-md p-2 outline-none"
-                                />
-                            </div>
-
-                            <div>
-                                <label className="block mb-1 font-medium">New Password</label>
-                                <input
-                                    type="password"
-                                    {...register('newPassword')}
-                                    className="w-full border border-teal-400 rounded-md p-2 outline-none"
-                                />
-                            </div>
-
-                            <div>
-                                <label className="block mb-1 font-medium">Confirm New Password</label>
-                                <input
-                                    type="password"
-                                    {...register('confirmPassword')}
-                                    className="w-full border border-teal-400 rounded-md p-2 outline-none"
-                                />
-                            </div>
-
-                            <div className='w-full text-center'>
-                                <button type="submit" className="mt-4 px-8 bg-teal-500 hover:bg-teal-600 text-white py-2 rounded-md cursor-pointer">
-                                    Save Changes
-                                </button>
-                            </div>
-                        </form>
-                    )}
+                        {activeTab === 'password' && (
+                            <motion.div
+                                key="password-tab"
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -20 }}
+                                transition={{ duration: 0.3 }}
+                            >
+                                <EditPassTab {...{ activeTab, handleSubmit, onSubmitPassword, register }} />
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 </div>
             </div>
         </PageContainer>

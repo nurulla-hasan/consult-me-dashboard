@@ -39,7 +39,7 @@ export default function UserGrowthChart() {
   const [selectedYear, setSelectedYear] = useState('2024');
 
   return (
-    <div className="bg-white rounded-md p-2 w-full text-[#4c4c4c] shadow-[0px_0px_2px_0px_#00000040]">
+    <div className="bg-white rounded-md p-4 w-full text-[#4c4c4c] shadow-[0px_4px_4px_0px_#00000040]">
       <div className="flex justify-between items-center mb-3">
         <h2 className="text-lg font-semibold">User Growth</h2>
         <div className="relative w-fit">
@@ -59,8 +59,12 @@ export default function UserGrowthChart() {
         </div>
       </div>
 
-      <ResponsiveContainer width="100%" height={258}>
-        <AreaChart className="text-[12px]" data={chartData[selectedYear]}>
+      <ResponsiveContainer width="100%" height={200}>
+        <AreaChart
+          className="text-[12px]"
+          data={chartData[selectedYear]}
+          margin={{ top: 0, right: 0, left: -32, bottom: -10 }}
+        >
           <CartesianGrid strokeDasharray="3 3" stroke="#e5e5e5" />
           <XAxis
             dataKey="name"
@@ -72,7 +76,7 @@ export default function UserGrowthChart() {
             axisLine={false}
             tickLine={false}
           />
-          <Tooltip wrapperStyle={{ fontSize: '14px' }}/>
+          <Tooltip wrapperStyle={{ fontSize: '14px' }} />
           <Area
             type="monotone"
             dataKey="value"
