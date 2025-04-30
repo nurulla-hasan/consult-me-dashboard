@@ -291,7 +291,7 @@ export const consult = [
   export const dummyCategories = [
     { name: "Legal", icon: "legal.png" },
     { name: "Business", icon: "business.png" },
-    { name: "IT Consult", icon: "it-consult.png" },
+    { name: "IT Consult", icon: "it-consult.png"},
     { name: "Farming", icon: "farming.png" },
     { name: "Legal", icon: "legal.png" },
     { name: "Business", icon: "business.png" },

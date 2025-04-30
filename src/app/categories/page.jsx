@@ -87,7 +87,7 @@ export default function CategoryManagement() {
                 </button>
             </div>
 
-            <div className="overflow-auto h-[74vh] scrl-hide grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+            <div className="overflow-auto p-3 h-[74vh] scrl-hide grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
                 {paginatedCategories.map((cat, idx) => (
                     <div
                         key={idx}
