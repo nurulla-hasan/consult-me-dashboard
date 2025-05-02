@@ -27,7 +27,7 @@ const ResetPasswordForm = () => {
 
     setTimeout(() => {
       setIsSubmitting(false);
-      router.push("/auth/reset-success");
+      router.push("/");
     }, 1500);
   };
 
