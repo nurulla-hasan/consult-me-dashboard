@@ -2,27 +2,36 @@
 import PageContainer from "@/components/container/PageContainer";
 import Pagination from "@/components/pagination/Pagination";
 import UserTable from "@/components/table/user-table/UserTable";
-import { users as seed } from "@/data/data";
+import { users } from "@/data/data";
 import { useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import { motion } from "framer-motion";
+import toast from "react-hot-toast";
 
-/* ----- attach blocked = false to each user once ----- */
-const initialUsers = seed.map((u) => ({ ...u, blocked: false }));
 
 export default function Users() {
   const pageSize = 9;
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
-  const [data, setData] = useState(initialUsers);
+  const [data, setData] = useState(users);
 
   /* block / unblock toggle */
-  const handleBlock = (id) =>
-    setData((prev) =>
-      prev.map((u) =>
-        u.id === id ? { ...u, blocked: !u.blocked } : u
-      )
+  const handleBlock = (id) => {
+  
+    const updated = data.map((user) =>
+      user.id === id ? { ...user, blocked: !user.blocked } : user
     );
+    
+    const updatedUser = updated.find((user) => user.id === id);
+    
+    if(updatedUser.blocked){
+      toast.success(`${updatedUser.name.slice(0, 8)}... has been Blocked`)
+    }else{
+      toast.success(`${updatedUser.name.slice(0, 8)}... has been Unblocked`)
+    }
+    setData(updated);
+  };
+  
 
   /* filter + paginate */
   const filtered = data.filter((u) =>

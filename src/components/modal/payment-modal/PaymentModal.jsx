@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion"; // Import Framer Motion components
+import { motion, AnimatePresence } from "framer-motion";
 
 const PaymentModal = ({ showModal, selectedUser, handleReject, handleAccept }) => {
     return (
@@ -10,14 +10,14 @@ const PaymentModal = ({ showModal, selectedUser, handleReject, handleAccept }) =
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.1 }}
                 >
                     <motion.div
                         className="bg-white rounded-xl min-w-lg p-4"
                         initial={{ scale: 0.8 }}
                         animate={{ scale: 1 }}
                         exit={{ scale: 0.8 }}
-                        transition={{ duration: 0.2 }}
+                        transition={{ duration: 0.1 }}
                     >
                         <div className="bg-[#00a89dbc] rounded-xl h-52 flex gap-3 justify-center items-center flex-col mb-4">
                             <Image src={selectedUser?.avatar} width={80} height={80} alt="avatar" className="rounded-full" />

@@ -8,14 +8,12 @@ import { useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import { motion } from "framer-motion";
 
-/* ----- attach blocked = false to each user once ----- */
-const initialUsers = consult.map((u) => ({ ...u, blocked: false }));
 
 export default function Consults() {
   const pageSize = 8;
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
-  const [data, setData] = useState(initialUsers);
+  const [data, setData] = useState(consult);
   const [selectedUser, setSelectedUser] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
@@ -27,7 +25,7 @@ export default function Consults() {
   const handleAccept = () => {
     setData((prev) =>
       prev.map((u) =>
-        u.id === selectedUser.id ? { ...u, blocked: true } : u
+        u.id === selectedUser.id ? { ...u, verified: true } : u
       )
     );
     setShowModal(false);

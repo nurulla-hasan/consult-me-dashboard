@@ -11,34 +11,29 @@ const UserTable = ({ paged, handleBlock }) => {
                         <th className="px-4 py-3 text-left">Email</th>
                         <th className="px-4 py-3 text-left">Contact Number</th>
                         <th className="px-4 py-3 text-left">Location</th>
-                        {/* <th className="px-4 py-3 text-left">Status</th> */}
                         <th className="px-4 py-3 text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {paged.map((u) => (
+                    {paged.map((user) => (
                         <tr
-                            key={u.id}
+                            key={user.id}
                             className={`odd:bg-gray-50`}>
-                            <td className="px-4 py-3">{u.id}</td>
+                            <td className="px-4 py-3">{user.id}</td>
                             <td className="px-4 py-3 flex items-center gap-2">
-                                <img src={u.avatar} alt="" className="w-9 h-9 rounded-full" />
-                                {u.name}
+                                <img src={user.avatar} alt="" className="w-9 h-9 rounded-full" />
+                                {user.name}
                             </td>
-                            <td className="px-4 py-3">{u.email}</td>
-                            <td className="px-4 py-3">{u.phone}</td>
-                            <td className="px-4 py-3">{u.location}</td>
-                            {/* <td className={`px-4 py-3`}>{u.blocked
-                                ? <span className="bg-red-500 text-white text-sm font-medium py-1 px-3 rounded-full transition duration-300 ease-in-out transform hover:scale-105">Blocked</span>
-                                : <span className="bg-green-500 text-white text-sm font-medium py-1 px-3 rounded-full transition duration-300 ease-in-out transform hover:scale-105">Unblocked</span>}
-                            </td> */}
+                            <td className="px-4 py-3">{user.email}</td>
+                            <td className="px-4 py-3">{user.phone}</td>
+                            <td className="px-4 py-3">{user.location}</td>
                             <td className="px-4 py-3 flex justify-center">
                                 <button
-                                    onClick={() => handleBlock(u.id)}
-                                    className={`w-8 h-8 flex items-center justify-center rounded cursor-pointer ${u.blocked
-                                        ? "bg-red-600 hover:bg-red-700"
-                                        : "bg-green-600 hover:bg-green-700"
-                                        } text-white`}
+                                    onClick={() => handleBlock(user.id)}
+                                    className={`w-12 h-9 flex items-center justify-center rounded cursor-pointer transition-all duration-300 ${user.blocked
+                                        ? "bg-red-200 text-red-600 hover:bg-red-300 border border-red-300"
+                                        : "bg-green-200 text-green-700 hover:bg-green-300 border border-green-300"
+                                        } `}
                                 >
                                     <MdBlockFlipped size={18} />
                                 </button>

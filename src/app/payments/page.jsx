@@ -64,6 +64,7 @@ export default function Payments() {
           <div className="font-medium">|</div>
           <div className="flex items-center gap-3">
             <h3 className="font-medium">NID Verification</h3>
+
             <div
               onClick={handleVerification}
               className={`w-12 h-6 flex items-center rounded-full p-1 cursor-pointer transition-colors ${
@@ -74,11 +75,10 @@ export default function Payments() {
                 layout
                 className="bg-white w-4 h-4 rounded-full shadow-md"
                 transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                style={{
-                  transform: `translateX(${enabled ? "24px" : "0px"})`,
-                }}
+                animate={{ x: enabled ? 24 : 0 }}
               />
             </div>
+            
           </div>
         </div>
 

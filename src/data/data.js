@@ -6,6 +6,7 @@ export const users = [
       email: "weaver@example.com",
       phone: "(671) 555‑0110",
       location: "Beijing, China",
+      "blocked": false,
     },
     {
       id: "#696589",
@@ -14,6 +15,7 @@ export const users = [
       email: "ennings@example.com",
       phone: "(205) 555‑0100",
       location: "Barisal, Bangladesh",
+      "blocked": false,
     },
     {
       id: "#526587",
@@ -22,6 +24,7 @@ export const users = [
       email: "cruz@example.com",
       phone: "(907) 555‑0101",
       location: "Yangon, Myanmar",
+      "blocked": false,
     },
     {
       id: "#526521",
@@ -30,6 +33,7 @@ export const users = [
       email: "lawson@example.com",
       phone: "(239) 555‑0108",
       location: "Phnom Penh",
+      "blocked": false,
     },
     {
       id: "#256584",
@@ -38,6 +42,7 @@ export const users = [
       email: "lawson@example.com",
       phone: "(209) 555‑0104",
       location: "Tokyo, Japan",
+      "blocked": false,
     },
     {
       id: "#526522",
@@ -46,6 +51,7 @@ export const users = [
       email: "baker@example.com",
       phone: "(316) 555‑0116",
       location: "Dhaka, Bangladesh",
+      "blocked": false,
     },
     {
       id: "#526589",
@@ -54,6 +60,7 @@ export const users = [
       email: "rivera@example.com",
       phone: "(406) 555‑0120",
       location: "Colombo, Sri Lanka",
+      "blocked": false,
     },
     {
       id: "#526523",
@@ -62,6 +69,7 @@ export const users = [
       email: "reid@example.com",
       phone: "(505) 555‑0125",
       location: "Sylhet, Bangladesh",
+      "blocked": false,
     },
     {
       id: "#200257",
@@ -70,6 +78,7 @@ export const users = [
       email: "sanders@example.com",
       phone: "(225) 555‑0118",
       location: "Karachi, Pakistan",
+      "blocked": false,
     },
     {
       id: "#526534",
@@ -78,6 +87,7 @@ export const users = [
       email: "jennings@example.com",
       phone: "(702) 555‑0122",
       location: "Mumbai, India",
+      "blocked": false,
     },
     {
       id: "#105986",
@@ -86,6 +96,7 @@ export const users = [
       email: "young@example.com",
       phone: "(302) 555‑0107",
       location: "Kathmandu, Nepal",
+      "blocked": false,
     },
     {
       id: "#845911",
@@ -94,6 +105,7 @@ export const users = [
       email: "russell@example.com",
       phone: "(312) 555‑0195",
       location: "Chittagong, Bangladesh",
+      "blocked": false,
     },
     {
       id: "#258744",
@@ -102,6 +114,7 @@ export const users = [
       email: "hawkins@example.com",
       phone: "(415) 555‑0133",
       location: "Lahore, Pakistan",
+      "blocked": false,
     },
     {
       id: "#785214",
@@ -110,6 +123,7 @@ export const users = [
       email: "howard@example.com",
       phone: "(504) 555‑0154",
       location: "Male, Maldives",
+      "blocked": false,
     },
     {
       id: "#369852",
@@ -118,6 +132,7 @@ export const users = [
       email: "nguyen@example.com",
       phone: "(808) 555‑0183",
       location: "Jakarta, Indonesia",
+      "blocked": false,
     },
   ];
 export const consult = [
@@ -130,7 +145,8 @@ export const consult = [
       phone: "(671) 555‑0110",
       location: "Beijing, China",
       nid: "/images/nid.png",
-      licence: "/images/licence.png"
+      licence: "/images/licence.png",
+      "verified": false,
     },
     {
       id: "#696589",
@@ -141,7 +157,8 @@ export const consult = [
       phone: "(205) 555‑0100",
       location: "Barisal, Bangladesh",
       nid: "/images/nid.png",
-      licence: "/images/licence.png"
+      licence: "/images/licence.png",
+      "verified": false,
     },
     {
       id: "#526587",
@@ -152,7 +169,8 @@ export const consult = [
       phone: "(907) 555‑0101",
       location: "Yangon, Myanmar",
       nid: "/images/nid.png",
-      licence: "/images/licence.png"
+      licence: "/images/licence.png",
+      "verified": false,
     },
     {
       id: "#526521",
@@ -163,7 +181,8 @@ export const consult = [
       phone: "(239) 555‑0108",
       location: "Phnom Penh",
       nid: "/images/nid.png",
-      licence: "/images/licence.png"
+      licence: "/images/licence.png",
+      "verified": false,
     },
     {
       id: "#256584",
@@ -174,7 +193,8 @@ export const consult = [
       phone: "(209) 555‑0104",
       location: "Tokyo, Japan",
       nid: "/images/nid.png",
-      licence: "/images/licence.png"
+      licence: "/images/licence.png",
+      "verified": false,
     },
     {
       id: "#526522",
@@ -185,7 +205,8 @@ export const consult = [
       phone: "(316) 555‑0116",
       location: "Dhaka, Bangladesh",
       nid: "/images/nid.png",
-      licence: "/images/licence.png"
+      licence: "/images/licence.png",
+      "verified": false,
     },
     {
       id: "#526589",
@@ -196,7 +217,8 @@ export const consult = [
       phone: "(406) 555‑0120",
       location: "Colombo, Sri Lanka",
       nid: "/images/nid.png",
-      licence: "/images/licence.png"
+      licence: "/images/licence.png",
+      "verified": false,
     },
     {
       id: "#526523",
@@ -207,7 +229,8 @@ export const consult = [
       phone: "(505) 555‑0125",
       location: "Sylhet, Bangladesh",
       nid: "/images/nid.png",
-      licence: "/images/licence.png"
+      licence: "/images/licence.png",
+      "verified": false,
     },
     {
       id: "#200257",
@@ -218,7 +241,8 @@ export const consult = [
       phone: "(225) 555‑0118",
       location: "Karachi, Pakistan",
       nid: "/images/nid.png",
-      licence: "/images/licence.png"
+      licence: "/images/licence.png",
+      "verified": false,
     },
     {
       id: "#526534",
@@ -229,7 +253,8 @@ export const consult = [
       phone: "(702) 555‑0122",
       location: "Mumbai, India",
       nid: "/images/nid.png",
-      licence: "/images/licence.png"
+      licence: "/images/licence.png",
+      "verified": false,
     },
     {
       id: "#105986",
@@ -240,7 +265,8 @@ export const consult = [
       phone: "(302) 555‑0107",
       location: "Kathmandu, Nepal",
       nid: "/images/nid.png",
-      licence: "/images/licence.png"
+      licence: "/images/licence.png",
+      "verified": false,
     },
     {
       id: "#845911",
@@ -251,7 +277,8 @@ export const consult = [
       phone: "(312) 555‑0195",
       location: "Chittagong, Bangladesh",
       nid: "/images/nid.png",
-      licence: "/images/licence.png"
+      licence: "/images/licence.png",
+      "verified": false,
     },
     {
       id: "#258744",
@@ -262,7 +289,8 @@ export const consult = [
       phone: "(415) 555‑0133",
       location: "Lahore, Pakistan",
       nid: "/images/nid.png",
-      licence: "/images/licence.png"
+      licence: "/images/licence.png",
+      "verified": false,
     },
     {
       id: "#785214",
@@ -273,7 +301,8 @@ export const consult = [
       phone: "(504) 555‑0154",
       location: "Male, Maldives",
       nid: "/images/nid.png",
-      licence: "/images/licence.png"
+      licence: "/images/licence.png",
+      "verified": false,
     },
     {
       id: "#369852",
@@ -284,7 +313,8 @@ export const consult = [
       phone: "(808) 555‑0183",
       location: "Jakarta, Indonesia",
       nid: "/images/nid.png",
-      licence: "/images/licence.png"
+      licence: "/images/licence.png",
+      "verified": false,
     },
   ];
 
