@@ -20,14 +20,14 @@ const CategoryModal = ({
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.1 }}
                 >
                     <motion.div
                         className="bg-white text-[#333333] p-8 rounded-lg w-[500px] shadow-lg"
                         initial={{ scale: 0.8 }}
                         animate={{ scale: 1 }}
                         exit={{ scale: 0.8 }}
-                        transition={{ duration: 0.2 }}
+                        transition={{ duration: 0.1 }}
                     >
                         <h2 className="text-lg font-medium flex items-center justify-center gap-2 mb-6">
                             <MdOutlineArrowBack
