@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { useRouter, useSearchParams } from "next/navigation";
-import { login } from "@/redux/features/authSlice";
+import { login } from "@/redux/slice/authSlice";
 
 const LoginFormContent = () => {
   const dispatch = useDispatch();

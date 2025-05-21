@@ -8,11 +8,11 @@ export default function PrivateRoute({ children }) {
   const router  = useRouter();
 
   // redirect when not authenticated
-  useEffect(() => {
-    if (!user) {
-      router.replace(`/auth/login`);
-    }
-  }, [ user, router]);
+  // useEffect(() => {
+  //   if (!user) {
+  //     router.replace(`/auth/login`);
+  //   }
+  // }, [ user, router]);
 
   return children;
 }

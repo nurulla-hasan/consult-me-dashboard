@@ -13,6 +13,9 @@ import Topbar from '@/components/layout/Topbar';
 import PrivateRoute from '@/components/privet-route/PrivetRoute';
 import Sidebar from '@/components/layout/Sidebar';
 
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+const queryClient = new QueryClient();
+
 const menuItems = [
   { label: "Dashboard", href: "/", icon: <LuLayoutDashboard size={20} /> },
   { label: "User Management", href: "/users", icon: <HiOutlineUserCircle size={20} /> },
@@ -36,27 +39,29 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <Provider store={store}>
-          <Toaster
-            position="top-center"
-            reverseOrder={false}
-          />
-          <div className="h-screen flex container mx-auto max-w-full bg-[#dbf8f8]">
-            {/* Sidebar */}
-            <Sidebar {...{isHideLayout, menuItems, setSettingsOpen, settingsOpen, settingMenu, pathname }}/>
+          <QueryClientProvider client={queryClient}>
+            <Toaster
+              position="top-center"
+              reverseOrder={false}
+            />
+            <div className="h-screen flex container mx-auto max-w-full bg-[#dbf8f8]">
+              {/* Sidebar */}
+              <Sidebar {...{ isHideLayout, menuItems, setSettingsOpen, settingsOpen, settingMenu, pathname }} />
 
-            {/* Main content */}
-            <main className="flex-1 overflow-auto scrl-hide bg-[#dbf8f8]">
-              {/* Top bar */}
-              <Topbar isHideLayout={isHideLayout} />
+              {/* Main content */}
+              <main className="flex-1 overflow-auto scrl-hide bg-[#dbf8f8]">
+                {/* Top bar */}
+                <Topbar isHideLayout={isHideLayout} />
 
-              {/* Page content */}
-              <PrivateRoute>
-                <div className={`font-poppins ${hideRoutes ? "" : "h-[calc(100vh-96px)]"} overflow-y-auto rounded-t-lg bg-[#f8f8f8] `}>
-                  {children}
-                </div>
-              </PrivateRoute>
-            </main>
-          </div>
+                {/* Page content */}
+                <PrivateRoute>
+                  <div className={`font-poppins ${hideRoutes ? "" : "h-[calc(100vh-96px)]"} overflow-y-auto rounded-t-lg bg-[#f8f8f8] `}>
+                    {children}
+                  </div>
+                </PrivateRoute>
+              </main>
+            </div>
+          </QueryClientProvider>
         </Provider>
       </body>
     </html>

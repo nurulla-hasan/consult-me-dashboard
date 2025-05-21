@@ -25,9 +25,9 @@ export default function Users() {
     const updatedUser = updated.find((user) => user.id === id);
     
     if(updatedUser.blocked){
-      toast.success(`${updatedUser.name.slice(0, 8)}... has been Blocked`)
+      toast.success(`${updatedUser.name.split(" ")[0]} has been Blocked`)
     }else{
-      toast.success(`${updatedUser.name.slice(0, 8)}... has been Unblocked`)
+      toast.success(`${updatedUser.name.split(" ")[0]} has been Unblocked`)
     }
     setData(updated);
   };
